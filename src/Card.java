@@ -1,10 +1,10 @@
 import javax.swing.*;
 
-public class Card extends JPanel implements Flippable{
+public class Card extends JPanel implements Flippable {
 
     private String value;
 
-    public Card( String value) {
+    public Card (String value) {
         this.value = value;
     }
 
@@ -12,7 +12,7 @@ public class Card extends JPanel implements Flippable{
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue (String value) {
         this.value = value;
     }
 
