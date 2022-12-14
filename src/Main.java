@@ -55,8 +55,11 @@ public class Main extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        cardPanel.removeAll();
         if (e.getSource() == newGameButton) {
-
+            newGameButton.setBackground(Color.green);
+            showGUI();
+            basePanel.repaint();
         }
     }
 
