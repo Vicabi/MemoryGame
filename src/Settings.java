@@ -19,6 +19,7 @@ public class Settings extends JFrame implements ActionListener {
     String difficulty;
     int numberOfCards;
 
+
     public int getDifficulty() {
         switch (difficulty) {
             case "easy" -> numberOfCards = 12; // how many cards that will be displayed

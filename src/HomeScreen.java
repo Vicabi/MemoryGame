@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 public class HomeScreen extends JFrame implements ActionListener {
 
     JPanel basePanel;
-    JPanel panel1;
-    JPanel panel2;
-    JPanel panel3;
+    JPanel topPanel;
+    JPanel middlePanel;
+    JPanel bottomPanel;
     JButton startGameButton;
     JButton settingsButton;
     JButton leaderBoardButton;
@@ -17,9 +17,7 @@ public class HomeScreen extends JFrame implements ActionListener {
     ImageIcon settingsIcon;
     ImageIcon memoryGameIcon;
     ImageIcon startGameIcon;
-
-    Color backgroundGreen = new Color(58,218,154);
-
+    Color backGroundColor = new Color(77,27,102);
 
     public HomeScreen(){
         setUpHomeScreen();
@@ -33,14 +31,17 @@ public class HomeScreen extends JFrame implements ActionListener {
     public void setUpHomeScreen(){
 
         basePanel = new JPanel(new GridLayout(3,1));
-        panel1 = new JPanel();
-        panel2 = new JPanel();
-        panel3 = new JPanel();
+        topPanel = new JPanel();
+        middlePanel = new JPanel();
+        bottomPanel = new JPanel();
         gameTitleLabel = new JLabel();
 
-        panel1.setBackground(Color.LIGHT_GRAY);
-        panel2.setBackground(Color.LIGHT_GRAY);
-        panel3.setBackground(Color.LIGHT_GRAY);
+
+
+        topPanel.setBackground(backGroundColor);
+        middlePanel.setBackground(backGroundColor);
+        bottomPanel.setBackground(backGroundColor);
+
 
         gameTitleLabel.setPreferredSize(new Dimension(500,150));
         memoryGameIcon = getScaledImage("Pictures/MemoryGameIcon.png",500,150);
@@ -55,25 +56,26 @@ public class HomeScreen extends JFrame implements ActionListener {
 
         add(basePanel);
 
+
         startGameButton.addActionListener(this);
         leaderBoardButton.addActionListener(this);
         settingsButton.addActionListener(this);
 
-        panel1.add(gameTitleLabel,SwingConstants.CENTER);
-        panel2.add(startGameButton,SwingConstants.CENTER);
-        panel3.add(settingsButton);
-        panel3.add(leaderBoardButton);
+        topPanel.add(gameTitleLabel,SwingConstants.CENTER);
+        middlePanel.add(startGameButton,SwingConstants.CENTER);
+        bottomPanel.add(settingsButton);
+        bottomPanel.add(leaderBoardButton);
 
-        basePanel.add(panel1);
-        basePanel.add(panel2);
-        basePanel.add(panel3);
+        basePanel.add(topPanel);
+        basePanel.add(middlePanel);
+        basePanel.add(bottomPanel);
 
 
 
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(500, 500);
+        this.setSize(800, 550);
 
     }
 
