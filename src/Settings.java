@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -18,10 +17,15 @@ public class Settings extends JFrame implements ActionListener {
     JButton returnToHomeScreenButton;
     Properties properties = new Properties();
     String difficulty;
+    int numberOfCards;
 
-
-    public String getDifficulty() {
-        return difficulty;
+    public int getDifficulty() {
+        switch (difficulty) {
+            case "easy" -> numberOfCards = 12; // how many cards that will be displayed
+            case "medium" -> numberOfCards = 24; // how many cards that will be displayed
+            case "hard" -> numberOfCards = 36; // how many cards that will be displayed
+        }
+        return numberOfCards;
     }
 
     public Settings(){
@@ -37,10 +41,10 @@ public class Settings extends JFrame implements ActionListener {
 
     public void setUpSettingScreen(){
         basePanel = new JPanel(new BorderLayout());
-        buttonPanel = new JPanel(new BorderLayout());
-        topPanel = new JPanel();
-        settingsLabel = new JLabel("Settings", SwingConstants.CENTER);
-        returnToHomeScreenButton = new JButton("Return to home");
+        buttonPanel = new JPanel(new GridLayout(3,1));
+        topPanel = new JPanel(new GridLayout(1,2));
+        settingsLabel = new JLabel("Choose Difficulty below:", SwingConstants.CENTER);
+        returnToHomeScreenButton = new JButton("Return to home screen");
 
         difficultyEasyButton = new JButton("Easy");
         difficultyMediumButton = new JButton("Medium");
@@ -72,7 +76,7 @@ public class Settings extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == returnToHomeScreenButton){
             this.setVisible(false);
-            //homeScreen.setVisible(true);
+            HomeScreen homeScreen = new HomeScreen();
         } else if (e.getSource() == difficultyEasyButton) {
             difficulty = "easy";
             JOptionPane.showMessageDialog(null,"Difficulty set to easy");
@@ -84,9 +88,5 @@ public class Settings extends JFrame implements ActionListener {
             difficulty = "hard";
             JOptionPane.showMessageDialog(null,"Difficulty set to hard");
         }
-    }
-
-    public static void main(String[] args) {
-        Settings settings = new Settings();
     }
 }
