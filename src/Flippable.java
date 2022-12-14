@@ -1,5 +1,5 @@
 public interface Flippable {
 
-    void flipACard(Card card);
+    void flipACard();
 
 }

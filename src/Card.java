@@ -1,23 +1,57 @@
 import javax.swing.*;
+import java.awt.*;
 
-public class Card extends JPanel implements Flippable {
+public class Card extends JLabel implements Flippable {
 
-    private String value;
+    private String letter;
+    private String picturePath;
+    private Color colorOfReverseSide = new Color(255, 102, 102);
+    private boolean isFlipped = false;
 
-    public Card (String value) {
-        this.value = value;
+    public Card (){}
+
+    public Card (String letter, String picturePath) {
+        this.letter = letter;
+        this.picturePath = picturePath;
     }
 
-    public String getValue() {
-        return value;
+    public String getLetter() {
+        return letter;
     }
 
-    public void setValue (String value) {
-        this.value = value;
+    public void setLetter(String letter) {
+        this.letter = letter;
+    }
+
+    public String getPicturePath() {
+        return picturePath;
+    }
+
+    public void setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
+    }
+
+    public Color getColorOfReverseSide() {
+        return colorOfReverseSide;
+    }
+
+    public boolean isFlipped() {
+        return isFlipped;
+    }
+
+    public void setFlipped(boolean flipped) {
+        isFlipped = flipped;
     }
 
     @Override
-    public void flipACard(Card card){
+    public void flipACard(){
+        this.setIcon(getScaledImage());
+    }
 
+    public ImageIcon getScaledImage() {
+        ImageIcon icon = new ImageIcon(this.picturePath);
+        Image image = icon.getImage();
+        Image imageScaled = image.getScaledInstance(165, 210, Image.SCALE_SMOOTH);
+        return new ImageIcon(imageScaled);
     }
 }
