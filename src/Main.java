@@ -15,7 +15,8 @@ public class Main extends JFrame implements ActionListener {
     JButton newGameButton;
     JButton shuffleButton;
     SetOfCards setOfCards = new SetOfCards();
-    List<Card> listOfCards;
+    Pronunciation pronunciation = new Pronunciation();
+    java.util.List<Card> listOfCards;
     private List<Integer> duplicates = new ArrayList<>();
     private int randomIndex;
 
@@ -95,6 +96,7 @@ public class Main extends JFrame implements ActionListener {
         Card cardToCompareA;
         Card cardToCompareB;
         int numberCardsUp = 0;
+        private int numberOfCorrectPairs;
 
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -104,8 +106,15 @@ public class Main extends JFrame implements ActionListener {
                 numberCardsUp = 1;
             } else if (e.getSource() instanceof JLabel && numberCardsUp == 1) {
                 ((Card) e.getSource()).flipACard();
+                pronunciation.setFile(((Card) e.getSource()).getPronunciationPath()); // tanken är att ordet uttalas när användaren hittar båda 2 korten
+                pronunciation.play();
                 cardToCompareB = (Card) e.getSource();
                 numberCardsUp = 0;
+            }
+
+            // kontrollera om spelaren vann
+            if (numberOfCorrectPairs == 12) { // antal brickor delat med 2
+                JOptionPane.showMessageDialog(null, "Grattis, du vann!");
             }
         }
     };
@@ -125,6 +134,7 @@ public class Main extends JFrame implements ActionListener {
             Card theOtherCard = new Card();
             theOtherCard.setLetter(card.getLetter()); // vi kopierar innehållet av kort 1 till kort 2
             theOtherCard.setPicturePath(card.getPicturePath()); // vi kopierar innehållet av kort 1 till kort 2
+            theOtherCard.setPronunciationPath(card.getPronunciationPath()); // vi kopierar innehållet av kort 1 till kort 2
             listOfCardsToShow.add(card);
             listOfCardsToShow.add(theOtherCard); // lägga till samma kort 2 gånger för att skapa ett par av detta kort
         }

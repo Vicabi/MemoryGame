@@ -5,14 +5,16 @@ public class Card extends JLabel implements Flippable {
 
     private String letter;
     private String picturePath;
+    private String pronunciationPath;
     private Color colorOfReverseSide = new Color(255, 102, 102);
     private boolean isFlipped = false;
 
     public Card (){}
 
-    public Card (String letter, String picturePath) {
+    public Card (String letter, String picturePath, String pronunciationPath) {
         this.letter = letter;
         this.picturePath = picturePath;
+        this.pronunciationPath = pronunciationPath;
     }
 
     public String getLetter() {
@@ -29,6 +31,14 @@ public class Card extends JLabel implements Flippable {
 
     public void setPicturePath(String picturePath) {
         this.picturePath = picturePath;
+    }
+
+    public String getPronunciationPath() {
+        return pronunciationPath;
+    }
+
+    public void setPronunciationPath(String pronunciationPath) {
+        this.pronunciationPath = pronunciationPath;
     }
 
     public Color getColorOfReverseSide() {
