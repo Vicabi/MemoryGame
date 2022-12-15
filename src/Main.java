@@ -9,11 +9,11 @@ import java.util.List;
 
 public class Main extends JFrame implements ActionListener {
 
-    JPanel basePanel = new JPanel(new BorderLayout());
-    JPanel topPanel = new JPanel(new GridLayout(1,2));
-    JPanel cardPanel = new JPanel(new GridLayout(4, 6));
-    JButton newGameButton = new JButton("Start new game");
-    JButton shuffleButton = new JButton("Shuffle");
+    JPanel basePanel;
+    JPanel topPanel;
+    JPanel cardPanel;
+    JButton newGameButton;
+    JButton shuffleButton;
     SetOfCards setOfCards = new SetOfCards();
     List<Card> listOfCards;
     private List<Integer> duplicates = new ArrayList<>();
@@ -23,7 +23,16 @@ public class Main extends JFrame implements ActionListener {
         showGUI();
     }
     public void showGUI() {
+
+        basePanel = new JPanel(new BorderLayout());
+
         add(basePanel);
+
+        topPanel = new JPanel(new GridLayout(1,2));
+        cardPanel = new JPanel(new GridLayout(4, 6));
+        shuffleButton = new JButton("Shuffle");
+        newGameButton = new JButton("Start new game");
+
         basePanel.add(cardPanel, BorderLayout.CENTER);
         basePanel.add(topPanel, BorderLayout.NORTH);
         topPanel.add(newGameButton);
@@ -39,6 +48,7 @@ public class Main extends JFrame implements ActionListener {
             card.addMouseListener(mouseListener);
             cardPanel.add(card);
         }
+
 
         newGameButton.addActionListener(this);
         shuffleButton.addActionListener(this);
@@ -60,7 +70,8 @@ public class Main extends JFrame implements ActionListener {
             cardPanel.removeAll();
             newGameButton.setBackground(Color.green);
             showGUI();
-            basePanel.repaint();
+            repaint();
+            revalidate();
         }
 
         if (e.getSource() == shuffleButton) {
