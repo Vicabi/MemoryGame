@@ -4,15 +4,16 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.List;
 
 public class Main extends JFrame implements ActionListener {
 
     JPanel basePanel = new JPanel(new BorderLayout());
+    JPanel topPanel = new JPanel(new GridLayout(1,2));
     JPanel cardPanel = new JPanel(new GridLayout(4, 6));
-    JButton newGameButton = new JButton("Restart Game");
+    JButton newGameButton = new JButton("Start new game");
+    JButton shuffleButton = new JButton("Shuffle");
     SetOfCards setOfCards = new SetOfCards();
     List<Card> listOfCards;
     private List<Integer> duplicates = new ArrayList<>();
@@ -27,7 +28,9 @@ public class Main extends JFrame implements ActionListener {
     public void showGUI() {
         add(basePanel);
         basePanel.add(cardPanel, BorderLayout.CENTER);
-        basePanel.add(newGameButton, BorderLayout.NORTH);
+        basePanel.add(topPanel, BorderLayout.NORTH);
+        topPanel.add(newGameButton);
+        topPanel.add(shuffleButton);
 
         listOfCards = createListOfCardsToShow(setOfCards.getListOfCards());
 
@@ -41,6 +44,7 @@ public class Main extends JFrame implements ActionListener {
         }
 
         newGameButton.addActionListener(this);
+        shuffleButton.addActionListener(this);
 
         this.pack();
         setLocationRelativeTo(null);
@@ -55,11 +59,28 @@ public class Main extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        cardPanel.removeAll();
+
         if (e.getSource() == newGameButton) {
+            cardPanel.removeAll();
             newGameButton.setBackground(Color.green);
             showGUI();
             basePanel.repaint();
+        }
+
+        if (e.getSource() == shuffleButton) {
+            int j = cardPanel.getComponentCount();
+            List <Point> tempList = new ArrayList<>();
+
+            for (int i = 0; i < j; i++) {
+                tempList.add(cardPanel.getComponent(i).getLocation());
+            }
+
+            Collections.shuffle(tempList);
+
+            for (int i = 0; i < j; i++) {
+                cardPanel.getComponent(i).setLocation(tempList.get(i));
+            }
+
         }
     }
 
