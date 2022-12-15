@@ -21,10 +21,7 @@ public class Main extends JFrame implements ActionListener {
 
     public Main() {
         showGUI();
-
     }
-
-
     public void showGUI() {
         add(basePanel);
         basePanel.add(cardPanel, BorderLayout.CENTER);
@@ -51,7 +48,6 @@ public class Main extends JFrame implements ActionListener {
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
 
     public static void main(String[] args) {
         Main m = new Main();
@@ -80,7 +76,6 @@ public class Main extends JFrame implements ActionListener {
             for (int i = 0; i < j; i++) {
                 cardPanel.getComponent(i).setLocation(tempList.get(i));
             }
-
         }
     }
 
@@ -103,8 +98,6 @@ public class Main extends JFrame implements ActionListener {
             }
         }
     };
-
-
 
     public List<Card> createListOfCardsToShow(List<Card> originalList) { // original listan består av 26 kort
         List<Card> listOfCardsToShow = new LinkedList<>();
