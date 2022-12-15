@@ -57,9 +57,21 @@ public class Main extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == newGameButton) {
+
             cardPanel.removeAll();
-            newGameButton.setBackground(Color.green);
-            showGUI();
+
+            listOfCards = createListOfCardsToShow(setOfCards.getListOfCards());
+
+            for (Card card : listOfCards) {
+                card.setOpaque(true);
+                card.setBackground(card.getColorOfReverseSide());
+                card.setBorder(new LineBorder(Color.WHITE, 3));
+                card.setPreferredSize(new Dimension(175, 225));
+                card.addMouseListener(mouseListener);
+                cardPanel.add(card);
+            }
+            cardPanel.validate();
+            cardPanel.repaint();
         }
 
         if (e.getSource() == shuffleButton) {
@@ -112,11 +124,14 @@ public class Main extends JFrame implements ActionListener {
             }
             duplicates.add(randomIndex);
             Card card = originalList.get(randomIndex);
-            Card theOtherCard = new Card();
-            theOtherCard.setLetter(card.getLetter()); // vi kopierar innehållet av kort 1 till kort 2
-            theOtherCard.setPicturePath(card.getPicturePath()); // vi kopierar innehållet av kort 1 till kort 2
-            listOfCardsToShow.add(card);
-            listOfCardsToShow.add(theOtherCard); // lägga till samma kort 2 gånger för att skapa ett par av detta kort
+            Card theFirstCard = new Card();
+            theFirstCard.setLetter(card.getLetter());
+            theFirstCard.setPicturePath(card.getPicturePath());
+            Card theSecondCard = new Card();
+            theSecondCard.setLetter(card.getLetter()); // vi kopierar innehållet av kort 1 till kort 2
+            theSecondCard.setPicturePath(card.getPicturePath()); // vi kopierar innehållet av kort 1 till kort 2
+            listOfCardsToShow.add(theFirstCard);
+            listOfCardsToShow.add(theSecondCard); // lägga till samma kort 2 gånger för att skapa ett par av detta kort
         }
         Collections.shuffle(listOfCardsToShow);
         return listOfCardsToShow;
