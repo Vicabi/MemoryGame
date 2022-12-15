@@ -12,7 +12,7 @@ public class Main extends JFrame implements ActionListener {
 
     JPanel basePanel = new JPanel(new BorderLayout());
     JPanel cardPanel = new JPanel(new GridLayout(4, 6));
-    JButton newGameButton = new JButton("Start new game");
+    JButton newGameButton = new JButton("Restart Game");
     SetOfCards setOfCards = new SetOfCards();
     List<Card> listOfCards;
     private List<Integer> duplicates = new ArrayList<>();
