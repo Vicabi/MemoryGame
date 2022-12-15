@@ -60,22 +60,21 @@ public class Main extends JFrame implements ActionListener {
             cardPanel.removeAll();
             newGameButton.setBackground(Color.green);
             showGUI();
-            basePanel.repaint();
         }
 
         if (e.getSource() == shuffleButton) {
-            int j = cardPanel.getComponentCount();
-            List <Point> tempList = new ArrayList<>();
-
-            for (int i = 0; i < j; i++) {
-                tempList.add(cardPanel.getComponent(i).getLocation());
+            cardPanel.removeAll();
+            Collections.shuffle(listOfCards);
+            for (Card card : listOfCards) {
+                card.setOpaque(true);
+                card.setBackground(card.getColorOfReverseSide());
+                card.setBorder(new LineBorder(Color.WHITE, 3));
+                card.setPreferredSize(new Dimension(175, 225));
+                card.addMouseListener(mouseListener);
+                cardPanel.add(card);
             }
-
-            Collections.shuffle(tempList);
-
-            for (int i = 0; i < j; i++) {
-                cardPanel.getComponent(i).setLocation(tempList.get(i));
-            }
+            cardPanel.validate();
+            cardPanel.repaint();
         }
     }
 
@@ -100,7 +99,9 @@ public class Main extends JFrame implements ActionListener {
     };
 
     public List<Card> createListOfCardsToShow(List<Card> originalList) { // original listan består av 26 kort
+
         List<Card> listOfCardsToShow = new LinkedList<>();
+        duplicates.clear();
 
         for (int i = 0; i < 12; i++) { // 12 får vi när vi delar antal brickor vi ska visa (i detta fall 24) med 2
             while (true) {
@@ -117,6 +118,7 @@ public class Main extends JFrame implements ActionListener {
             listOfCardsToShow.add(card);
             listOfCardsToShow.add(theOtherCard); // lägga till samma kort 2 gånger för att skapa ett par av detta kort
         }
+        Collections.shuffle(listOfCardsToShow);
         return listOfCardsToShow;
     }
 }
