@@ -67,6 +67,8 @@ public class Main extends JFrame implements ActionListener {
 
         if (e.getSource() == newGameButton) {
 
+
+
             cardPanel.removeAll();
 
             listOfCards = createListOfCardsToShow(setOfCards.getListOfCards());
