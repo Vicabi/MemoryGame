@@ -14,11 +14,10 @@ public class Main extends JFrame implements ActionListener {
     JPanel cardPanel;
     JButton newGameButton;
     JButton shuffleButton;
-    SetOfCards setOfCards = new SetOfCards();
+    //CardBuilder setOfCards = new CardBuilder();
     Pronunciation pronunciation = new Pronunciation();
     List<Card> listOfCards;
-    private List<Integer> duplicates = new ArrayList<>();
-    private int randomIndex;
+
     private int numberOfCorrectPairs;
 
     public Main() {
@@ -41,7 +40,8 @@ public class Main extends JFrame implements ActionListener {
         topPanel.add(newGameButton);
         topPanel.add(shuffleButton);
 
-        listOfCards = createListOfCardsToShow(setOfCards.getListOfCards());
+        CardBuilder cb = new CardBuilder();
+        listOfCards = cb.getCardsForGame();
 
         for (Card card : listOfCards) {
             card.addMouseListener(mouseListener);
@@ -70,8 +70,8 @@ public class Main extends JFrame implements ActionListener {
 
 
             cardPanel.removeAll();
-
-            listOfCards = createListOfCardsToShow(setOfCards.getListOfCards());
+            CardBuilder cb1 = new CardBuilder();
+            listOfCards = cb1.getCardsForGame();
 
             for (Card card : listOfCards) {
                 card.setOpaque(true);
@@ -129,34 +129,7 @@ public class Main extends JFrame implements ActionListener {
 
     };
 
-    public List<Card> createListOfCardsToShow(List<Card> originalList) { // original listan består av 26 kort
 
-        List<Card> listOfCardsToShow = new LinkedList<>();
-        duplicates.clear();
-
-        for (int i = 0; i < 12; i++) { // 12 får vi när vi delar antal brickor vi ska visa (i detta fall 24) med 2
-            while (true) {
-                randomIndex = (int) (Math.random() * 26); // 26 för att vi har 26 olika bokstäver i vår kortlek
-                if (!duplicates.contains(randomIndex)) {
-                    break;
-                }
-            }
-            duplicates.add(randomIndex);
-            Card card = originalList.get(randomIndex);
-            Card theFirstCard = new Card();
-            theFirstCard.setLetter(card.getLetter());
-            theFirstCard.setPicturePath(card.getPicturePath());
-            theFirstCard.setPronunciationPath(card.getPronunciationPath());
-            Card theSecondCard = new Card();
-            theSecondCard.setLetter(card.getLetter()); // vi kopierar innehållet av kort 1 till kort 2
-            theSecondCard.setPicturePath(card.getPicturePath()); // vi kopierar innehållet av kort 1 till kort 2
-            theSecondCard.setPronunciationPath(card.getPronunciationPath());
-            listOfCardsToShow.add(theFirstCard);
-            listOfCardsToShow.add(theSecondCard); // lägga till samma kort 2 gånger för att skapa ett par av detta kort
-        }
-        Collections.shuffle(listOfCardsToShow);
-        return listOfCardsToShow;
-    }
 
     public boolean areSameCards(Card cardA, Card cardB) {
         if (cardA.getLetter().equals(cardB.getLetter())) {

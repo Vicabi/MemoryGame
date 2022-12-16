@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Card extends JLabel implements Flippable {
 
-    private String letter;
+    String letter;
     private String picturePath;
     ImageIcon picture;
     private String pronunciationPath;
