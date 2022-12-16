@@ -105,12 +105,12 @@ public class Main extends JFrame implements ActionListener {
                 ((Card) e.getSource()).flipACardUp();
                 cardToCompareA = (Card) e.getSource();
                 numberCardsUp = 1;
-                System.out.println("I klick once");
+                System.out.println("I clicked once");
             } else if (e.getSource() instanceof JLabel && numberCardsUp == 1) {
                 ((Card) e.getSource()).flipACardUp();
                 cardToCompareB = (Card) e.getSource();
                 numberCardsUp = 2;
-                System.out.println("I klick twice");
+                System.out.println("I clicked twice");
             }
 
             if (cardToCompareA != null && cardToCompareB != null && numberCardsUp == 2) {
