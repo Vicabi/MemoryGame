@@ -91,11 +91,12 @@ public class Settings extends JFrame implements ActionListener {
         basePanel.add(topPanel, BorderLayout.NORTH);
         basePanel.add(buttonPanel, BorderLayout.CENTER);
 
-        setLocationRelativeTo(null);
+
+
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(500, 500);
-
+        setLocationRelativeTo(null);
 
     }
 
@@ -106,6 +107,7 @@ public class Settings extends JFrame implements ActionListener {
             HomeScreen homeScreen = new HomeScreen();
         } else if (e.getSource() == difficultyEasyButton) {
             difficulty = "easy";
+            System.out.println("difficulty: " + difficulty);
             JOptionPane.showMessageDialog(null, "Difficulty set to easy");
         } else if (e.getSource() == difficultyMediumButton) {
             difficulty = "medium";
@@ -113,6 +115,7 @@ public class Settings extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(null, "Difficulty set to medium");
         } else if (e.getSource() == difficultyHardButton) {
             difficulty = "hard";
+            System.out.println("difficulty: " + difficulty);
             JOptionPane.showMessageDialog(null, "Difficulty set to hard");
         }
     }

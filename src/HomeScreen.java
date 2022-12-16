@@ -48,7 +48,6 @@ public class HomeScreen extends JFrame implements ActionListener {
 
         add(basePanel);
 
-
         startGameButton.addActionListener(this);
         leaderBoardButton.addActionListener(this);
         settingsButton.addActionListener(this);
@@ -62,12 +61,10 @@ public class HomeScreen extends JFrame implements ActionListener {
         basePanel.add(middlePanel);
         basePanel.add(bottomPanel);
 
-
-        setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(800, 550);
-
+        setLocationRelativeTo(null);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -88,4 +85,3 @@ public class HomeScreen extends JFrame implements ActionListener {
         HomeScreen homeScreen = new HomeScreen();
     }
 }
-
