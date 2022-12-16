@@ -103,7 +103,7 @@ public class GameScreen extends JFrame implements ActionListener {
         int numberCardsUp = 0;
 
         @Override
-        public void mouseClicked(MouseEvent e) {
+        public void mouseClicked(MouseEvent e) { // vi måste triggra när vi vänder ner kortet på nåt annat sätt
             if (e.getSource() instanceof JLabel && numberCardsUp == 0) {
                 ((Card) e.getSource()).flipACardUp();
                 cardToCompareA = (Card) e.getSource();
@@ -115,7 +115,6 @@ public class GameScreen extends JFrame implements ActionListener {
                 numberCardsUp = 2;
                 System.out.println("I clicked twice");
             }
-
             if (cardToCompareA != null && cardToCompareB != null && numberCardsUp == 2) {
                 checkIfSameCards(cardToCompareA, cardToCompareB);
                 numberCardsUp = 0;
