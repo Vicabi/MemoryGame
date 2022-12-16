@@ -7,20 +7,21 @@ import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
 
-public class Main extends JFrame implements ActionListener {
+public class GameScreen extends JFrame implements ActionListener {
 
     JPanel basePanel;
     JPanel topPanel;
     JPanel cardPanel;
     JButton newGameButton;
     JButton shuffleButton;
-    //CardBuilder setOfCards = new CardBuilder();
     Pronunciation pronunciation = new Pronunciation();
+    CardBuilder cardBuilder = new CardBuilder();
     List<Card> listOfCards;
+    Settings settings = new Settings();
 
     private int numberOfCorrectPairs;
 
-    public Main() {
+    public GameScreen() {
         showGUI();
     }
 
@@ -40,8 +41,7 @@ public class Main extends JFrame implements ActionListener {
         topPanel.add(newGameButton);
         topPanel.add(shuffleButton);
 
-        CardBuilder cb = new CardBuilder();
-        listOfCards = cb.getCardsForGame();
+        listOfCards = cardBuilder.getCardsForGame();
 
         for (Card card : listOfCards) {
             card.addMouseListener(mouseListener);
@@ -58,7 +58,7 @@ public class Main extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        Main m = new Main();
+        GameScreen m = new GameScreen();
     }
 
     @Override
@@ -67,8 +67,7 @@ public class Main extends JFrame implements ActionListener {
         if (e.getSource() == newGameButton) {
 
             cardPanel.removeAll();
-            CardBuilder cb1 = new CardBuilder();
-            listOfCards = cb1.getCardsForGame();
+            listOfCards = cardBuilder.createCards();
 
             for (Card card : listOfCards) {
                 card.setOpaque(true);
@@ -119,17 +118,15 @@ public class Main extends JFrame implements ActionListener {
             }
 
             // kontrollera om spelaren vann
-            if (numberOfCorrectPairs == 12) { // antal brickor delat med 2
+            if (numberOfCorrectPairs == settings.getDifficulty()) { // antal brickor delat med 2
                 JOptionPane.showMessageDialog(null, "Congratulations! You won!");
             }
         }
 
     };
 
-
-
     public boolean areSameCards(Card cardA, Card cardB) {
-        if (cardA.getLetter().equals(cardB.getLetter())) {
+        if (cardA.getLetter().equals(cardB.getLetter()) && cardA != cardB) {
             System.out.println("Same cards");
             return true;
         } else {
@@ -148,9 +145,8 @@ public class Main extends JFrame implements ActionListener {
             cardB.setFlipNoMore(true);
             numberOfCorrectPairs++;
         } else if (!areSameCards(cardA, cardB)) {
-        //    cardA.flipACardDown();
-        //    cardB.flipACardDown();
-
+                cardA.flipACardDown();
+                cardB.flipACardDown();
         }
     }
 }

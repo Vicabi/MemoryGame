@@ -8,20 +8,15 @@ public class Card extends JLabel implements Flippable {
     private String picturePath;
     ImageIcon picture;
     private String pronunciationPath;
-    private Color colorOfReverseSide = new Color(255, 102, 102);
+    //private Color colorOfReverseSide = new Color(255, 102, 102);
+    private Color colorOfReverseSide = new Color(77, 27, 102);
     private boolean isFlipped;
     private boolean flipNoMore;
 
     public Card() {
-        picture = getScaledImage();
-        isFlipped = false;
-        setOpaque(true);
-        setBackground(getColorOfReverseSide());
-        setBorder(new LineBorder(Color.WHITE, 3));
-        setPreferredSize(new Dimension(175, 225));
     }
 
-    public Card(String letter, String picturePath, String pronunciationPath) {
+    /*public Card(String letter, String picturePath, String pronunciationPath) {
         this.letter = letter;
         this.picturePath = picturePath;
         this.pronunciationPath = pronunciationPath;
@@ -31,7 +26,7 @@ public class Card extends JLabel implements Flippable {
         setBackground(getColorOfReverseSide());
         setBorder(new LineBorder(Color.WHITE, 3));
         setPreferredSize(new Dimension(175, 225));
-    }
+    }*/
 
     public String getLetter() {
         return letter;

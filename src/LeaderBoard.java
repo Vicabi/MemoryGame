@@ -51,7 +51,7 @@ public class LeaderBoard extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == startNewGameButton){
             this.setVisible(false);
-            Main main = new Main();
+            GameScreen main = new GameScreen();
         } else if (e.getSource() == returnToHomeScreenButton) {
             this.setVisible(false);
             HomeScreen homeScreen = new HomeScreen();
