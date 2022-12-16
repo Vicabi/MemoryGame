@@ -32,10 +32,10 @@ public class LeaderBoard extends JFrame implements ActionListener {
         buttonPanel.add(startNewGameButton);
         createLabels();
 
+        this.setSize(800,550);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
-        this.setSize(800,550);
     }
     public void createLabels(){
         for (int i = 1; i < 11; i++) {

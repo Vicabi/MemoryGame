@@ -64,25 +64,19 @@ public class Main extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-
         if (e.getSource() == newGameButton) {
-
-
-
             cardPanel.removeAll();
 
             listOfCards = createListOfCardsToShow(setOfCards.getListOfCards());
 
             for (Card card : listOfCards) {
-                card.setOpaque(true);
-                card.setBackground(card.getColorOfReverseSide());
-                card.setBorder(new LineBorder(Color.WHITE, 3));
-                card.setPreferredSize(new Dimension(175, 225));
                 card.addMouseListener(mouseListener);
                 cardPanel.add(card);
             }
-            cardPanel.validate();
+
+            cardPanel.revalidate();
             cardPanel.repaint();
+            numberOfCorrectPairs = 0;
         }
 
         if (e.getSource() == shuffleButton) {
@@ -126,8 +120,8 @@ public class Main extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Congratulations! You won!");
             }
         }
-
     };
+
 
     public List<Card> createListOfCardsToShow(List<Card> originalList) { // original listan består av 26 kort
 
@@ -147,12 +141,14 @@ public class Main extends JFrame implements ActionListener {
             theFirstCard.setLetter(card.getLetter());
             theFirstCard.setPicturePath(card.getPicturePath());
             theFirstCard.setPronunciationPath(card.getPronunciationPath());
+            theFirstCard.setPicture(card.getPicture());
             Card theSecondCard = new Card();
-            theSecondCard.setLetter(card.getLetter()); // vi kopierar innehållet av kort 1 till kort 2
-            theSecondCard.setPicturePath(card.getPicturePath()); // vi kopierar innehållet av kort 1 till kort 2
+            theSecondCard.setLetter(card.getLetter());
+            theSecondCard.setPicturePath(card.getPicturePath());
             theSecondCard.setPronunciationPath(card.getPronunciationPath());
+            theSecondCard.setPicture(card.getPicture());
             listOfCardsToShow.add(theFirstCard);
-            listOfCardsToShow.add(theSecondCard); // lägga till samma kort 2 gånger för att skapa ett par av detta kort
+            listOfCardsToShow.add(theSecondCard);
         }
         Collections.shuffle(listOfCardsToShow);
         return listOfCardsToShow;
@@ -178,8 +174,8 @@ public class Main extends JFrame implements ActionListener {
             cardB.setFlipNoMore(true);
             numberOfCorrectPairs++;
         } else if (!areSameCards(cardA, cardB)) {
-        //    cardA.flipACardDown();
-        //    cardB.flipACardDown();
+            //    cardA.flipACardDown();
+            //    cardB.flipACardDown();
 
         }
     }

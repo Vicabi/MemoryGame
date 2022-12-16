@@ -91,13 +91,10 @@ public class Settings extends JFrame implements ActionListener {
         basePanel.add(topPanel, BorderLayout.NORTH);
         basePanel.add(buttonPanel, BorderLayout.CENTER);
 
-
-
-        setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(500, 500);
         setLocationRelativeTo(null);
-
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     @Override
