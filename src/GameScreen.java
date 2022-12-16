@@ -148,8 +148,8 @@ public class GameScreen extends JFrame implements ActionListener {
             cardB.setFlipNoMore(true);
             numberOfCorrectPairs++;
         } else if (!areSameCards(cardA, cardB)) {
-                cardA.flipACardDown();
-                cardB.flipACardDown();
+            cardA.flipACardDown();
+            cardB.flipACardDown();
         }
     }
 }
