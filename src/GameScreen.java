@@ -43,7 +43,11 @@ public class GameScreen extends JFrame implements ActionListener {
 
         listOfCards = cardBuilder.getCardsForGame();
 
-        for (Card card : listOfCards) {
+        for (Card card : listOfCards) {//Kopierat rad 47-50 från 77-80 för att slippa måla korten i CardBuilder
+            card.setOpaque(true);
+            card.setBackground(card.getColorOfReverseSide());
+            card.setBorder(new LineBorder(Color.WHITE, 3));
+            card.setPreferredSize(new Dimension(175, 225));
             card.addMouseListener(mouseListener);
             cardPanel.add(card);
         }
