@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +16,7 @@ public class Main extends JFrame implements ActionListener {
     JButton shuffleButton;
     SetOfCards setOfCards = new SetOfCards();
     Pronunciation pronunciation = new Pronunciation();
-    java.util.List<Card> listOfCards;
+    List<Card> listOfCards;
     private List<Integer> duplicates = new ArrayList<>();
     private int randomIndex;
     private int numberOfCorrectPairs;
@@ -65,11 +66,21 @@ public class Main extends JFrame implements ActionListener {
 
 
         if (e.getSource() == newGameButton) {
+
             cardPanel.removeAll();
-            newGameButton.setBackground(Color.green);
-            showGUI();
-            repaint();
-            revalidate();
+
+            listOfCards = createListOfCardsToShow(setOfCards.getListOfCards());
+
+            for (Card card : listOfCards) {
+                card.setOpaque(true);
+                card.setBackground(card.getColorOfReverseSide());
+                card.setBorder(new LineBorder(Color.WHITE, 3));
+                card.setPreferredSize(new Dimension(175, 225));
+                card.addMouseListener(mouseListener);
+                cardPanel.add(card);
+            }
+            cardPanel.validate();
+            cardPanel.repaint();
         }
 
         if (e.getSource() == shuffleButton) {
@@ -117,6 +128,7 @@ public class Main extends JFrame implements ActionListener {
     };
 
     public List<Card> createListOfCardsToShow(List<Card> originalList) { // original listan består av 26 kort
+
         List<Card> listOfCardsToShow = new LinkedList<>();
         duplicates.clear();
 
@@ -129,13 +141,16 @@ public class Main extends JFrame implements ActionListener {
             }
             duplicates.add(randomIndex);
             Card card = originalList.get(randomIndex);
-            Card theOtherCard = new Card();
-            theOtherCard.setLetter(card.getLetter()); // vi kopierar innehållet av kort 1 till kort 2
-            theOtherCard.setPicturePath(card.getPicturePath()); // vi kopierar innehållet av kort 1 till kort 2
-            theOtherCard.setPronunciationPath(card.getPronunciationPath()); // vi kopierar innehållet av kort 1 till kort 2
-            theOtherCard.setPicture(card.getPicture()); // vi kopierar innehållet av kort 1 till kort 2
-            listOfCardsToShow.add(card);
-            listOfCardsToShow.add(theOtherCard); // lägga till samma kort 2 gånger för att skapa ett par av detta kort
+            Card theFirstCard = new Card();
+            theFirstCard.setLetter(card.getLetter());
+            theFirstCard.setPicturePath(card.getPicturePath());
+            theFirstCard.setPronunciationPath(card.getPronunciationPath());
+            Card theSecondCard = new Card();
+            theSecondCard.setLetter(card.getLetter()); // vi kopierar innehållet av kort 1 till kort 2
+            theSecondCard.setPicturePath(card.getPicturePath()); // vi kopierar innehållet av kort 1 till kort 2
+            theSecondCard.setPronunciationPath(card.getPronunciationPath());
+            listOfCardsToShow.add(theFirstCard);
+            listOfCardsToShow.add(theSecondCard); // lägga till samma kort 2 gånger för att skapa ett par av detta kort
         }
         Collections.shuffle(listOfCardsToShow);
         return listOfCardsToShow;
