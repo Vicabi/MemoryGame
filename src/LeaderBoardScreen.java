@@ -54,7 +54,7 @@ public class LeaderBoardScreen extends JFrame implements ActionListener {
     }
 
     public void createLabels() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i < 10; i++) {
             if (i<listOfResults.size()) {
                 JLabel label = new JLabel("Place " + i + ":       " + listOfResults.get(i) + " clicks");
                 label.setForeground(Color.WHITE);
