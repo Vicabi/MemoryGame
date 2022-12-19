@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class Card extends JLabel implements Flippable {
@@ -8,10 +7,8 @@ public class Card extends JLabel implements Flippable {
     private String picturePath;
     ImageIcon picture;
     private String pronunciationPath;
-    //private Color colorOfReverseSide = new Color(255, 102, 102);
-    private Color colorOfReverseSide = new Color(77, 27, 102);
-    private boolean isFlipped;
-    private boolean flipNoMore;
+    private Color colorOfReverseSide = new Color(255, 102, 102);
+    //private Color colorOfReverseSide = new Color(77, 27, 102);
 
     public Card() {
     }
@@ -36,16 +33,8 @@ public class Card extends JLabel implements Flippable {
         this.letter = letter;
     }
 
-    public String getPicturePath() {
-        return picturePath;
-    }
-
     public void setPicturePath(String picturePath) {
         this.picturePath = picturePath;
-    }
-
-    public ImageIcon getPicture() {
-        return picture;
     }
 
     public void setPicture(ImageIcon picture) {
@@ -64,31 +53,13 @@ public class Card extends JLabel implements Flippable {
         return colorOfReverseSide;
     }
 
-    public boolean isFlipped() {
-        return isFlipped;
-    }
-
-    public void setFlipped(boolean flipped) {
-        isFlipped = flipped;
-    }
-
-    public boolean isFlipNoMore() {
-        return flipNoMore;
-    }
-
-    public void setFlipNoMore(boolean flipNoMore) {
-        this.flipNoMore = flipNoMore;
-    }
-
     @Override
     public void flipACardUp() {
         setIcon(picture);
-        setFlipped(true);
     }
 
     public void flipACardDown() {
         setIcon(null);
-        setFlipped(false);
     }
 
     public ImageIcon getScaledImage() {
