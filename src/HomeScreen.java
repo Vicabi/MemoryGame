@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,7 +26,7 @@ public class HomeScreen extends JFrame implements ActionListener {
     }
 
     public void setUpHomeScreen() {
-        //Color backGroundColor = new Color(77, 27, 102);
+    //    Color backGroundColor = new Color(77, 27, 102);
         Color backGroundColor = new Color(255, 102, 102);
 
         JPanel basePanel = new JPanel(new GridLayout(3, 1));

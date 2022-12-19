@@ -30,10 +30,10 @@ public class GameScreen extends JFrame implements ActionListener {
     Card cardToCompareB;
 
     public GameScreen() {
-        showGUI();
+        setUpGameScreen();
     }
 
-    public void showGUI() {
+    public void setUpGameScreen() {
 
         basePanel = new JPanel(new BorderLayout());
 

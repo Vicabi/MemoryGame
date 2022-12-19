@@ -13,18 +13,6 @@ public class Card extends JLabel implements Flippable {
     public Card() {
     }
 
-    /*public Card(String letter, String picturePath, String pronunciationPath) {
-        this.letter = letter;
-        this.picturePath = picturePath;
-        this.pronunciationPath = pronunciationPath;
-        picture = getScaledImage();
-        isFlipped = false;
-        setOpaque(true);
-        setBackground(getColorOfReverseSide());
-        setBorder(new LineBorder(Color.WHITE, 3));
-        setPreferredSize(new Dimension(175, 225));
-    }*/
-
     public String getLetter() {
         return letter;
     }
