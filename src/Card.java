@@ -3,18 +3,14 @@ import java.awt.*;
 
 public class Card extends JLabel implements Flippable {
 
-    private String letter;
+    String letter;
     private String picturePath;
+    ImageIcon picture;
     private String pronunciationPath;
     private Color colorOfReverseSide = new Color(255, 102, 102);
-    private boolean isFlipped = false;
+    //private Color colorOfReverseSide = new Color(77, 27, 102);
 
-    public Card (){}
-
-    public Card (String letter, String picturePath, String pronunciationPath) {
-        this.letter = letter;
-        this.picturePath = picturePath;
-        this.pronunciationPath = pronunciationPath;
+    public Card() {
     }
 
     public String getLetter() {
@@ -25,12 +21,12 @@ public class Card extends JLabel implements Flippable {
         this.letter = letter;
     }
 
-    public String getPicturePath() {
-        return picturePath;
-    }
-
     public void setPicturePath(String picturePath) {
         this.picturePath = picturePath;
+    }
+
+    public void setPicture(ImageIcon picture) {
+        this.picture = picture;
     }
 
     public String getPronunciationPath() {
@@ -45,17 +41,13 @@ public class Card extends JLabel implements Flippable {
         return colorOfReverseSide;
     }
 
-    public boolean isFlipped() {
-        return isFlipped;
-    }
-
-    public void setFlipped(boolean flipped) {
-        isFlipped = flipped;
-    }
-
     @Override
-    public void flipACard(){
-        this.setIcon(getScaledImage());
+    public void flipACardUp() {
+        setIcon(picture);
+    }
+
+    public void flipACardDown() {
+        setIcon(null);
     }
 
     public ImageIcon getScaledImage() {

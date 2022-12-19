@@ -8,6 +8,11 @@ public class HomeScreen extends JFrame implements ActionListener {
     JButton startGameButton;
     JButton settingsButton;
     JButton leaderBoardButton;
+    static Settings settings = new Settings();
+    GameScreen main;
+    LeaderBoardScreen leaderBoard;
+    SettingScreen settingScreen;
+
 
     public HomeScreen() {
         setUpHomeScreen();
@@ -21,7 +26,8 @@ public class HomeScreen extends JFrame implements ActionListener {
     }
 
     public void setUpHomeScreen() {
-        Color backGroundColor = new Color(77, 27, 102);
+    //    Color backGroundColor = new Color(77, 27, 102);
+        Color backGroundColor = new Color(255, 102, 102);
 
         JPanel basePanel = new JPanel(new GridLayout(3, 1));
         JPanel topPanel = new JPanel();
@@ -29,11 +35,9 @@ public class HomeScreen extends JFrame implements ActionListener {
         JPanel bottomPanel = new JPanel();
         JLabel gameTitleLabel = new JLabel();
 
-
         topPanel.setBackground(backGroundColor);
         middlePanel.setBackground(backGroundColor);
         bottomPanel.setBackground(backGroundColor);
-
 
         gameTitleLabel.setPreferredSize(new Dimension(500, 150));
         ImageIcon memoryGameIcon = getScaledImage("Pictures/MemoryGameIcon.png", 500, 150);
@@ -48,7 +52,6 @@ public class HomeScreen extends JFrame implements ActionListener {
 
         add(basePanel);
 
-
         startGameButton.addActionListener(this);
         leaderBoardButton.addActionListener(this);
         settingsButton.addActionListener(this);
@@ -62,30 +65,28 @@ public class HomeScreen extends JFrame implements ActionListener {
         basePanel.add(middlePanel);
         basePanel.add(bottomPanel);
 
-
+        this.setSize(800, 550);
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(800, 550);
-
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == startGameButton) {
+            System.out.println(settings.getDifficulty());
             this.setVisible(false);
-            Main main = new Main();
+            main = new GameScreen();
         } else if (e.getSource() == leaderBoardButton) {
             this.setVisible(false);
-            LeaderBoard leaderBoard = new LeaderBoard();
+            leaderBoard = new LeaderBoardScreen();
         } else if (e.getSource() == settingsButton) {
             this.setVisible(false);
-            Settings settings = new Settings();
+            settingScreen = new SettingScreen();
         }
     }
-
 
     public static void main(String[] args) {
         HomeScreen homeScreen = new HomeScreen();
     }
 }
-
