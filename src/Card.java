@@ -3,9 +3,9 @@ import java.awt.*;
 
 public class Card extends JLabel implements Flippable {
 
-    String letter;
+    private String letter;
     private String picturePath;
-    ImageIcon picture;
+    private ImageIcon picture;
     private String pronunciationPath;
     private Color colorOfReverseSide = new Color(255, 102, 102);
     //private Color colorOfReverseSide = new Color(77, 27, 102);
